@@ -1,0 +1,79 @@
+# MCP Server Configuration
+# This file defines the available MCP servers and their SSE endpoints
+
+servers:
+  # Example: Filesystem operations
+  - name: filesystem
+    description: "Access and manipulate files and directories"
+    sse_endpoint: "http://localhost:3000/sse"
+    enabled: true
+    capabilities:
+      - read_file
+      - write_file
+      - list_directory
+      - search_files
+
+  # Example: Database operations
+  - name: database
+    description: "Query and manage database operations"
+    sse_endpoint: "http://localhost:3001/sse"
+    enabled: true
+    capabilities:
+      - execute_query
+      - get_schema
+      - list_tables
+
+  # Example: Web search
+  - name: web_search
+    description: "Search the web for information"
+    sse_endpoint: "http://localhost:3002/sse"
+    enabled: false
+    capabilities:
+      - search
+      - get_page_content
+
+  # Example: Email operations
+  - name: email
+    description: "Send and manage emails"
+    sse_endpoint: "http://localhost:3003/sse"
+    enabled: false
+    capabilities:
+      - send_email
+      - list_emails
+      - read_email
+
+# Tool selection configuration
+tool_selection:
+  # Keywords that trigger specific tool selection
+  keywords:
+    filesystem:
+      - file
+      - directory
+      - folder
+      - read
+      - write
+      - create
+    database:
+      - database
+      - query
+      - table
+      - sql
+      - data
+    web_search:
+      - search
+      - web
+      - internet
+      - find
+      - lookup
+    email:
+      - email
+      - send
+      - mail
+      - message
+
+  # Default tools to always include
+  default_tools:
+    - filesystem
+
+  # Maximum number of tools to load per request
+  max_tools: 5
